@@ -23,9 +23,9 @@ const MemberContent = withAuthInfo((props) => {
                 .then((snapshot) => {
                     if (snapshot.exists()) {
                         snapshot.forEach(childSnapshot => {
-                            const userVal = snapshot.val();
-                            userVal.key = snapshot.key;
-                            setUser(userVal);
+                            const key = Object.keys(snapshot.val())[0];
+                            const userVal = snapshot.val()[key];
+                            userVal.key = key;
                         });
                     }
                     else {
