@@ -6,7 +6,7 @@ function RobloxAuth(props) {
     const search = useLocation().search;
     const code = new URLSearchParams(search).get('code');
     // delete b4 push
-    const roblox_secret = "RBX-jisw5oUpe0udTv-ZAnefMFn-rk-AzjUKm9G_I8ygryLe9RXTwQy6DnQkN8JyfIsq";
+    const roblox_secret = "SECRET";
     if (code !== null) {
         fetch(`https://apis.roblox.com/oauth/v1/token`,
             {
