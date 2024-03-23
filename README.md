@@ -4,13 +4,13 @@ Accelerate redefines driver's education by merging interactive learning with gam
 
 ## Built With
 
-firebase
-lua
-node.js
-npm
-propel
-react
-roblox
+firebase,
+lua,
+node.js,
+npm,
+propel,
+react,
+roblox, and 
 tailwind
 
 ## Usage
