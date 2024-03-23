@@ -13,8 +13,11 @@ import UserDashboard from './views/member/user/userDashboard';
 import AdminDashboard from './views/member/admin/adminDashboard';
 import RoleSelect from './views/onboarding/roleSelect';
 import Login from './views/onboarding/login';
+import Loading from './views/loading';
 import Signup from './views/onboarding/signup';
 import './App.css';
+
+import { RequiredAuthProvider, RedirectToLogin } from "@propelauth/react";
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -64,11 +67,16 @@ function App() {
     if (role === undefined) {
       return <RoleSelect />
     }
-    return (<div>
-      <Routes>
-        <Route path="/dashboard/*" element={<UserDashboard user={user} role={role}/>} />
-        <Route path="/" element={<Navigate replace to="/dashboard" />} />
-      </Routes>
+    return (
+    <div className="flex flex-row w-full">
+      <SideBar />
+      <div className="flex flex-col w-full">
+        <NavBar />
+        <Routes>
+          <Route path="/dashboard/*" element={<UserDashboard user={user} role={role}/>} />
+          <Route path="/" element={<Navigate replace to="/dashboard" />} />
+        </Routes>
+      </div>
     </div>)
   }
 
@@ -76,18 +84,14 @@ function App() {
   const loginElement = <Login auth={auth} provider={provider} setSignedIn={(val) => setSignedIn(val)} />;
   return (
       <div className="flex flex-row">
-        <SideBar />
-        {!isSignedIn ?
-            <div className="flex flex-col w-full">
-              <NavBar />
-              <Routes>
-                <Route path="*" element={<Navigate replace to="/" />} />
-                <Route path="/" element={<Login />} />
-              </Routes>
-            </div>
-            :
-            renderUserContent()
-        }
+
+        <RequiredAuthProvider
+          authUrl="https://042176320.propelauthtest.com"
+          displayWhileLoading={<Loading />}
+          displayIfLoggedOut={<Login />}
+          >
+            {renderUserContent()}
+          </RequiredAuthProvider>
         <Footer />
       </div>
   );

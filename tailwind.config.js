@@ -2,7 +2,12 @@
 module.exports = {
   content: ["./src/**/*.{html,js}"],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        urbanist: ['"Urbanist"', "sans-serif"],
+        // Add more custom font families as needed
+      }
+    },
   },
   plugins: [],
 }
