@@ -23,8 +23,9 @@ const MemberContent = withAuthInfo((props) => {
                 .then((snapshot) => {
                     if (snapshot.exists()) {
                         snapshot.forEach(childSnapshot => {
-                            const userVal = snapshot.val();
-                            userVal.key = snapshot.key;
+                            const key = Object.keys(snapshot.val())[0];
+                            const userVal = snapshot.val()[key];
+                            userVal.key = key;
                             setUser(userVal);
                         });
                     }
@@ -40,6 +41,7 @@ const MemberContent = withAuthInfo((props) => {
             return (<SignUp user={props.user}/>)
         }
         else {
+            console.log(user)
             return (
                 <div className="flex flex-row w-full">
                     <SideBar/>
