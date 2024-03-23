@@ -1,0 +1,105 @@
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+print("hello")
+local Constants = require(script.Parent.Parent.Constants)
+local Controller = require(script.Parent.Parent.Controller)
+local Camera = require(script.Parent.Camera)
+local Input = require(script.Parent.InstructorInput)
+local Speedometer = require(script.Parent.Speedometer)
+local setJumpingEnabled = require(script.setJumpingEnabled)
+local disconnectAndClear = require(script.Parent.disconnectAndClear)
+
+local destructionHandlerTemplate = script.DestructionHandler
+local player = Players.LocalPlayer
+local car = script.Parent.Parent.Parent
+local passengerSeat = car.PassengerSeat
+local engine = car.Engine
+local remotes = car.Remotes
+local setNitroEnabledRemote = remotes.SetNitroEnabled
+local animations = car.Animations
+local driveAnimation = animations.DriveAnimation
+
+local isControlling = false
+local connections = {}
+local driveAnimationTrack = nil
+
+-- Enable the client modules and Controller update loop
+local function startWatching()
+	if isControlling then
+		return
+	end
+	isControlling = true
+
+	-- Stop the player from jumping out the seat since a separate key is bound to exit the car.
+	local character = player.Character
+	if character then
+		setJumpingEnabled(character, false)
+
+	end
+
+	-- Enable the client modules
+	Camera:enable()
+	Input:enable()
+	Speedometer:enable()
+end
+
+-- Disable the client modules and Controller update loop
+local function stopWatching()
+	if not isControlling then
+		return
+	end
+	isControlling = false
+
+	-- Disable the client modules
+	Camera:disable()
+	Input:disable()
+	Speedometer:disable()
+
+	-- Disconnect event connections
+	disconnectAndClear(connections)
+
+	-- Reenable jumping for the player
+	local character = player.Character
+	if character then
+		setJumpingEnabled(character, true)
+	end
+
+end
+
+-- Call startControlling() or stopControlling() if the player enters or exits the seat
+local function onOccupantChanged()
+	local isOccupiedByLocalPlayer = false
+
+	local humanoid = passengerSeat.Occupant
+	if humanoid then
+		local character = humanoid.Parent
+		local playerInSeat = Players:GetPlayerFromCharacter(character)
+		if playerInSeat == player then
+			isOccupiedByLocalPlayer = true
+		end
+	end
+
+	if isOccupiedByLocalPlayer then
+		startWatching()
+	else
+		stopWatching()
+	end
+end
+
+-- When using Deferred signal mode: since this script is parented to the car, destroying the car will clean up
+-- all connections (including .Destroying) before they can actually execute.
+-- To avoid this, we'll use a slightly hacky solution and clone a listener script into PlayerScripts.
+-- This script will continue running after the car is destroyed and allow us to properly clean up when the car is destroyed.
+local function setupDestructionHandler()
+	local destructionHandler = destructionHandlerTemplate:Clone()
+	destructionHandler.Parent = player.PlayerScripts
+	destructionHandler.Enabled = true
+
+	-- Defer firing the BindableEvent so the script is able to initialize first
+	task.defer(function()
+		destructionHandler.BindToCar:Fire(car, stopWatching())
+	end)
+end
+
+setupDestructionHandler()
+passengerSeat:GetPropertyChangedSignal("Occupant"):Connect(onOccupantChanged)
