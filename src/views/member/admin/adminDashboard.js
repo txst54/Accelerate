@@ -53,8 +53,8 @@ function AdminDashboard() {
                     {users.map((user) => (
                         <tr key={user.id} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                             <td className="py-4 px-6">{user.id}</td>
-                            <td className="py-4 px-6">{user.first_name}</td>
-                            <td className="py-4 px-6">{user.last_name}</td>
+                            <td className="py-4 px-6">{user.firstname}</td>
+                            <td className="py-4 px-6">{user.lastname}</td>
                             <td className="py-4 px-6">{user.roblox_id}</td>
                             <td className="py-4 px-6">{user.instructor || 'N/A'}</td>
                             <td className="py-4 px-6">{user.last_completed_module}</td>
