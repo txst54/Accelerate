@@ -26,6 +26,7 @@ const MemberContent = withAuthInfo((props) => {
                             const key = Object.keys(snapshot.val())[0];
                             const userVal = snapshot.val()[key];
                             userVal.key = key;
+                            setUser(userVal);
                         });
                     }
                     else {
