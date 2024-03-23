@@ -68,7 +68,7 @@ function UserDashboard(props) {
   const isModuleAccessible = (index) => user && (index <= (user.last_completed_module || 0));
 
   return (
-    <div className="flex h-full px-8">
+    <div className="flex h-full px-8 pb-8">
       <div className=" flex flex-col w-1/3">
         <nav className="overflow-show bg-white drop-shadow-xl hover:drop-shadow-2xl transition-all duration-200 rounded-3xl px-4 py-2 pb-8">
           <div className="flex flex-row">
@@ -103,13 +103,114 @@ function UserDashboard(props) {
             Current Grade
           </div>
           <div className="font-semibold text-3xl text-green-500">
-            A+
+            A
           </div>
           <div className="pt-4"></div>
           <div className="bg-white border-slate-200 border-2 rounded-lg flex-row flex justify-center p-2 font-semibold hover:text-white transition-all duration-200">
             <Line options={options} data={data} />
           </div>
 
+        </div>
+        <div className="bg-white drop-shadow-xl hover:drop-shadow-2xl transition-all duration-200 pb-8 my-8 rounded-3xl px-4 py-2">
+          <div className="font-semibold text-xl flex flex-row pb-1">
+            <svg xmlns="http://www.w3.org/2000/svg" className="w-8" viewBox="0 0 24 24" fill="none">
+              <path d="M3 8L5.72187 10.2682C5.90158 10.418 6.12811 10.5 6.36205 10.5H17.6379C17.8719 10.5 18.0984 10.418 18.2781 10.2682L21 8M6.5 14H6.51M17.5 14H17.51M8.16065 4.5H15.8394C16.5571 4.5 17.2198 4.88457 17.5758 5.50772L20.473 10.5777C20.8183 11.1821 21 11.8661 21 12.5623V18.5C21 19.0523 20.5523 19.5 20 19.5H19C18.4477 19.5 18 19.0523 18 18.5V17.5H6V18.5C6 19.0523 5.55228 19.5 5 19.5H4C3.44772 19.5 3 19.0523 3 18.5V12.5623C3 11.8661 3.18166 11.1821 3.52703 10.5777L6.42416 5.50772C6.78024 4.88457 7.44293 4.5 8.16065 4.5ZM7 14C7 14.2761 6.77614 14.5 6.5 14.5C6.22386 14.5 6 14.2761 6 14C6 13.7239 6.22386 13.5 6.5 13.5C6.77614 13.5 7 13.7239 7 14ZM18 14C18 14.2761 17.7761 14.5 17.5 14.5C17.2239 14.5 17 14.2761 17 14C17 13.7239 17.2239 13.5 17.5 13.5C17.7761 13.5 18 13.7239 18 14Z" stroke="#000000" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <div className="px-2">
+              Interactive Roblox Experience
+            </div>
+          </div>
+          <div>
+            Users online:
+          </div>
+          <div className="font-semibold text-3xl ">
+            560,327
+          </div>
+          <div className="flex flex-row pt-4 justify-between">
+            <div className="flex flex-col items-center">
+              <div className="bg-red-600 rounded-full p-2 w-11 flex flex-col items-center hover:cursor-pointer hover:drop-shadow-lg transition-all duration-200">
+                <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-7" viewBox="0 0 24 24" version="1.1">
+                  <title>Upload-3</title>
+                  <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <g id="Upload-3">
+                      <rect id="Rectangle" fill-rule="nonzero" x="0" y="0" width="24" height="24">
+
+                      </rect>
+                      <line x1="12" y1="5" x2="12" y2="15" id="Path" stroke="#0C0310" stroke-width="1.3" stroke-linecap="round" className="stroke-white">
+
+                      </line>
+                      <line x1="19" y1="20" x2="5" y2="20" id="Path" stroke="#0C0310" stroke-width="1.3" stroke-linecap="round" className="stroke-white">
+
+                      </line>
+                      <path d="M7,9 L11.2929,4.70711 C11.6834,4.31658 12.3166,4.31658 12.7071,4.70711 L17,9" id="Path" stroke="#0C0310" stroke-width="1.3" stroke-linecap="round" className="stroke-white">
+
+                      </path>
+                    </g>
+                  </g>
+                </svg>
+              </div>
+              <div className="text-slate-700 text-sm">
+                Practice
+              </div>
+            </div>
+            <div className="flex flex-col items-center">
+              <div className="bg-white border-2 border-slate-300 rounded-full p-2 w-11 flex flex-col items-center hover:cursor-pointer transition-all duration-200 hover:drop-shadow-lg">
+                <svg xmlns="http://www.w3.org/2000/svg" className="w-6" viewBox="0 0 24 24" version="1.1">
+                  <title>Download-3</title>
+                  <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <g id="Download-3">
+                      <rect id="Rectangle" fill-rule="nonzero" x="0" y="0" width="24" height="24">
+
+                      </rect>
+                      <line x1="12" y1="5" x2="12" y2="15" id="Path" stroke="#FFFFFF" stroke-width="1.3" stroke-linecap="round" className="stroke-slate-400">
+
+                      </line>
+                      <path d="M17,11 L12.7071,15.2929 C12.3166,15.6834 11.6834,15.6834 11.2929,15.2929 L7,11" id="Path" stroke="#FFFFFF" stroke-width="1.3" stroke-linecap="round" className="stroke-slate-400">
+
+                      </path>
+                      <line x1="19" y1="20" x2="5" y2="20" id="Path" stroke="#FFFFFF" stroke-width="1.3" stroke-linecap="round" className="stroke-slate-400">
+
+                      </line>
+                    </g>
+                  </g>
+                </svg>
+              </div>
+              <div className="text-slate-700 text-sm">
+                Request Instructor
+              </div>
+            </div>
+
+            <div className="flex flex-col items-center">
+              <div className="bg-white border-2 border-slate-300 flex flex-col items-center rounded-full p-2 w-11 hover:cursor-pointer hover:drop-shadow-lg">
+                <svg xmlns="http://www.w3.org/2000/svg" className="w-6 stroke-white" viewBox="0 0 1000 1000" >
+                  <g>
+
+                    <g transform="translate(0.000000,511.000000) scale(0.100000,-0.100000)">
+
+                      <path d="M1685.8,4989.2c-253.7-58.9-499.3-265.9-621.1-519.6l-75.1-158.3l-6.1-4141c-4.1-2772.8,2-4173.4,16.2-4238.4c56.8-267.9,257.8-513.6,523.7-639.4l156.3-75.1l3258-6.1c2174-4.1,3290.4,2,3355.4,16.2c326.8,69,627.2,365.4,702.4,692.2c14.2,58.9,22.3,1049.5,22.3,2809.4c0,2616.5-2,2724.1-38.6,2801.2c-48.7,101.5-3373.6,3428.5-3458.9,3460.9C5449.2,5017.6,1797.5,5015.6,1685.8,4989.2z M4856.5,3087.2c0-1433.1,2-1451.4,115.7-1648.3c89.3-152.2,253.7-298.4,426.3-381.6l158.3-75.1l1427-6.1l1425-6.1v-2494.7c0-1891.9-6.1-2506.9-24.4-2547.5c-52.8-117.7,148.2-111.6-3385.8-111.6s-3333.1-6.1-3385.8,111.6c-38.6,81.2-34.5,8302.2,4.1,8371.2c58.9,105.6,12.2,101.5,1682.8,103.5h1556.9V3087.2z M6866.1,1585.1c-1351.9-4.1-1337.7-6.1-1380.3,109.6c-12.2,30.5-20.3,552.1-20.3,1293V4230l1319.4-1319.4l1319.4-1319.4L6866.1,1585.1z" className="fill-slate-400"/>
+
+                      <path d="M2989-327.1v-304.5h2009.6h2009.6v304.5v304.5H4998.6H2989V-327.1z" className="fill-slate-400"/>
+
+                      <path d="M2989-1646.5V-1951h2009.6h2009.6v304.5v304.5H4998.6H2989V-1646.5z" className="fill-slate-400"/>
+
+                      <path d="M2989-2925.3v-304.5h954.1h954v304.5v304.5h-954H2989V-2925.3z" className="fill-slate-400"/>
+
+                    </g>
+
+                  </g>
+                </svg>
+              </div>
+              <div className="text-slate-700 text-sm">
+                Driving Logs
+              </div>
+            </div>
+
+          </div>
+          <div className="pt-4"></div>
+          <a href="https://www.roblox.com/games/16842719463/GTA-1" className="bg-white border-slate-200 border-2 rounded-lg flex-row flex justify-center p-2 font-semibold hover:text-white transition-all duration-200 hover:cursor-pointer hover:bg-red-500 hover:border-red-500">
+
+            Join Experience
+          </a>
         </div>
       </div>
       <div className=" h-full w-2/3 pl-8">
@@ -121,8 +222,8 @@ function UserDashboard(props) {
               <div className="flex flex-col mt-8">
                 {activeModule.content.split('\n').map((m) => <div><p className="flex-1 px-8 indent-12">{m}</p><br></br></div>)}
               </div>
-              <div className="mt-4">
-              <iframe width="560" height="315" src={activeModule.video} frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              <div className="mt-4 h-full px-8">
+                <iframe className="w-full aspect-video" src={activeModule.video} frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
               </div>
             </div>
           )}
