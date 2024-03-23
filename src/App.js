@@ -7,6 +7,7 @@ import { getAuth, GoogleAuthProvider } from "firebase/auth";
 
 import Footer from './components/footer';
 import NavBar from './components/navbar';
+import SideBar from './components/sidebar';
 
 import UserDashboard from './views/member/user/userDashboard';
 import AdminDashboard from './views/member/admin/adminDashboard';
@@ -74,10 +75,11 @@ function App() {
 
   const loginElement = <Login auth={auth} provider={provider} setSignedIn={(val) => setSignedIn(val)} />;
   return (
-      <div className="bg-youmeblue h-screen*2">
-        <NavBar signedIn={isSignedIn} setSignedIn={setSignedIn} />
+      <div className="flex flex-row">
+        <SideBar />
         {!isSignedIn ?
-            <div>
+            <div className="flex flex-col w-full">
+              <NavBar />
               <Routes>
                 <Route path="*" element={<Navigate replace to="/" />} />
                 <Route path="/" element={<Login />} />
