@@ -64,17 +64,18 @@ function App() {
 
   const renderUserContent = () => {
     // if role is not defined, then they are not registered: redirect them to sign up page
-    if (role === undefined) {
-      return <RoleSelect />
-    }
+    // if (role === undefined) {
+    //   return <RoleSelect />
+    // }
     return (
     <div className="flex flex-row w-full">
       <SideBar />
       <div className="flex flex-col w-full">
         <NavBar />
         <Routes>
-          <Route path="/dashboard/*" element={<UserDashboard user={user} role={role}/>} />
           <Route path="/" element={<Navigate replace to="/dashboard" />} />
+          <Route path="/dashboard" element={<UserDashboard currentUserID="user0"/>} />
+          <Route path="/admin_dashboard" element={<AdminDashboard />} />
         </Routes>
       </div>
     </div>)
