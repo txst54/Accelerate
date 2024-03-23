@@ -83,7 +83,7 @@ function UserDashboard(props) {
           <ul className="border border-gray-200 rounded-2xl">
             {modules.map((module, index) => (
               <li key={index}
-                  className={`hover:cursor-pointer p-4 text-sm rounded-2xl ${isModuleAccessible(index) ? 'hover:bg-gray-100' : 'text-gray-400 hover:cursor-default'} ${activeModule && activeModule.title === module.title ? 'bg-gray-100' : ''}`}
+                  className={`hover:cursor-pointer p-4 text-sm rounded-2xl ${index === 0 || isModuleAccessible(index) ? 'hover:bg-gray-100' : 'text-gray-400 hover:cursor-default'} ${activeModule && activeModule.title === module.title ? 'bg-gray-100' : ''}`}
                   onClick={() => isModuleAccessible(index) && setActiveModule(module)}>
                 {module.title}
               </li>

@@ -23,6 +23,7 @@ const DEFAULT_STATE = {
     agree: false,
     disabled: false,
     email: "",
+    last_completed_module: -1,
     role: "pending"
 };
 
