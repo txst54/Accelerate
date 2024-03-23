@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getAuth, GoogleAuthProvider } from "firebase/auth";
 
 import Footer from './components/footer';
 import NavBar from './components/navbar';
@@ -18,6 +17,8 @@ import Signup from './views/onboarding/signup';
 import './App.css';
 
 import { RequiredAuthProvider, RedirectToLogin } from "@propelauth/react";
+import { getDatabase, ref, onValue, orderByChild, child, get, equalTo } from 'firebase/database';
+import MemberContent from "./views/member/memberContent";
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -33,56 +34,13 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const auth = getAuth();
-const provider = new GoogleAuthProvider();
 
 function App() {
-  const [isSignedIn, setSignedIn] = useState(false);
   const [role, setRole] = useState("signedOut");
   const [user, setUser] = useState({});
 
-  useEffect(() => {
-    const subscriber = getAuth().onAuthStateChanged(onAuthStateChanged);
-    return subscriber; // unsubscribe on unmount
-  }, []);
 
-  // attach listener to auth state change
-  function onAuthStateChanged(user) {
-    if (user) {
-      setSignedIn(true);
-      user.getIdTokenResult(true).then((idTokenResult) => {
-        setUser(user);
-        setRole(idTokenResult.claims.role)
-      })
-    }
-  }
-
-  const getUser = () => {
-    // fetch user data from firebase rtdb based on their role
-    return 0
-  }
-
-  const renderUserContent = () => {
-    // if role is not defined, then they are not registered: redirect them to sign up page
-    // if (role === undefined) {
-    //   return <RoleSelect />
-    // }
-    return (
-    <div className="flex flex-row w-full">
-      <SideBar />
-      <div className="flex flex-col w-full">
-        <NavBar />
-        <Routes>
-          <Route path="/" element={<Navigate replace to="/dashboard" />} />
-          <Route path="/dashboard" element={<UserDashboard currentUserID="user0"/>} />
-          <Route path="/admin_dashboard" element={<AdminDashboard />} />
-        </Routes>
-      </div>
-    </div>)
-  }
-
-
-  const loginElement = <Login auth={auth} provider={provider} setSignedIn={(val) => setSignedIn(val)} />;
+  // const loginElement = <Login auth={auth} provider={provider} setSignedIn={(val) => setSignedIn(val)} />;
   return (
       <div className="flex flex-row">
 
@@ -91,8 +49,8 @@ function App() {
           displayWhileLoading={<Loading />}
           displayIfLoggedOut={<Login />}
           >
-            {renderUserContent()}
-          </RequiredAuthProvider>
+            <MemberContent />
+        </RequiredAuthProvider>
         <Footer />
       </div>
   );

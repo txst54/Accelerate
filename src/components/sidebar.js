@@ -4,7 +4,7 @@ import { withAuthInfo, useRedirectFunctions, useLogoutFunction } from '@propelau
 function SideBar() {
     const logoutFunction = useLogoutFunction()
     return (
-        <div className="h-screen bg-slate-800 rounded-br-3xl rounded-tr-3xl w-20">
+        <div className="h-full bg-slate-800 rounded-br-3xl rounded-tr-3xl w-20">
             <div className="bg-red-500 rounded-tr-3xl px-2 py-4">
                 <svg className="fill-white pt-2 px-1" xmlns="http://www.w3.org/2000/svg" version="1.1" id="Layer_1" image-rendering="optimizeQuality" text-rendering="geometricPrecision" shape-rendering="geometricPrecision" x="0px" y="0px" viewBox="0 0 841.9 367.3">
                     <path className="st0" d="M715.3,0.1h126.6L633,210.6H506.4L715.3,0.1z M118.9,210.6H0L148.3,60.8C190,16.2,243.7,0,310.9,0H690  l-78.7,79.3H306.1c-51.1-0.1-71.3,14.8-99.7,43.4L118.9,210.6z"/>
