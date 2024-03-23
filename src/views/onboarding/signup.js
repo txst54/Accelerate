@@ -19,11 +19,10 @@ const DEFAULT_STATE = {
     lastname: "",
     prefemail: "",
     instructor: "",
-    roblox: "",
     agree: false,
     disabled: false,
     email: "",
-    last_completed_module: -1,
+    last_completed_module: 0,
     role: "pending"
 };
 
@@ -67,10 +66,9 @@ export default class App extends React.Component {
     }
 
     setUserData = () => {
-        console.log("Setting data...");
         const db = getDatabase();
         // replace '.' in emails with ',' because firebase can't store '.' as a char
-        const path = "users/" + this.props.user.email.replace(/\./g, ",");
+        const path = "users/" + this.props.user.key;
         const newUser = this.state;
         newUser.email = this.props.user.email
         set(ref(db, path), newUser)
@@ -123,10 +121,6 @@ export default class App extends React.Component {
                             <div className="grid grid-cols-6 gap-6">
                                 <StylizedInput id="instructor" label="Instructor Key" disabled={this.state.disabled}
                                                value={this.state.instructor} onChange={this.handleChanges}
-                                               smwidth={4}/>
-                                {block}
-                                <StylizedInput id="roblox" label="Roblox Username" disabled={this.state.disabled}
-                                               value={this.state.roblox} onChange={this.handleChanges}
                                                smwidth={4}/>
                                 {block}
                             </div>

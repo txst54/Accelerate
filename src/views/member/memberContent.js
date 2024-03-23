@@ -10,6 +10,7 @@ import AdminDashboard from "./admin/adminDashboard";
 import SignUp from "../onboarding/signup";
 import firebase from 'firebase/app';
 import 'firebase/database';
+import RobloxAuth from "../onboarding/robloxauth";
 
 const MemberContent = withAuthInfo((props) => {
     const [user, setUser] = useState(null);
@@ -38,7 +39,11 @@ const MemberContent = withAuthInfo((props) => {
                 })
         }
         else if (user.key === "new_user") {
-            return (<SignUp user={props.user}/>)
+            return (<RobloxAuth user={props.user} />)
+        }
+        else if (user.agree === undefined) {
+            console.log(user)
+            return (<SignUp user={user} />)
         }
         else {
             return (
