@@ -122,10 +122,7 @@ function UserDashboard(props) {
                 {activeModule.content.split('\n').map((m) => <div><p className="flex-1 px-8 indent-12">{m}</p><br></br></div>)}
               </div>
               <div className="mt-4">
-                <video controls className="max-w-full h-auto">
-                  <source src={activeModule.video} type="video/mp4" />
-                  Your browser does not support the video tag.
-                </video>
+              <iframe width="560" height="315" src={activeModule.video} frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
               </div>
             </div>
           )}
