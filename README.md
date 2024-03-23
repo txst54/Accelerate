@@ -4,6 +4,15 @@ Accelerate redefines driver's education by merging interactive learning with gam
 
 ## Built With
 
+firebase
+lua
+node.js
+npm
+propel
+react
+roblox
+tailwind
+
 ## Usage
 
 This project may be used in the virtual aspect of driver's education. The information presented in the modules combined with the virtual driving environment engage the students and allow them to fundamentally grasp the driving concepts that are key to their ability to keep themselves and the roads safe. Our virtual environment gives people the most flexibility with learning driving concepts and allows them to choose lessons and instruction that best fits their schedule.
