@@ -1,0 +1,28 @@
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local RobaseServiceModule = require(ReplicatedStorage:WaitForChild("RobaseService"))
+local successEvent = ReplicatedStorage.Remotes:FindFirstChild("PassedTest")
+local failEvent = ReplicatedStorage.Remotes:FindFirstChild("RestartTest")
+local RobaseService = RobaseServiceModule.new(
+	"https://formula-one-academy-default-rtdb.firebaseio.com/", 
+	"KgygX9hBgn482Dd5fmqkd8q5uBDrLolPmsqDm71z"
+)
+local UserRobase = RobaseService:GetRobase("users")
+
+function incrementCompletedModule(player, car, driver)
+	--player is the passenger, car is the car they are driving, driver is the driver
+	car:Destroy()
+	print(UserRobase:IncrementAsync(driver.UserId .. "/last_completed_module", 1))
+	driver:Kick("Module Successful")
+	player:Kick("Module Successful")
+
+end
+
+function restartModule(player, car, driver)
+	car:Destroy()
+	driver.Character.Humanoid.Health = 0
+	driver.Character.Humanoid.Health = 0
+	print("epic")
+end
+
+successEvent.OnServerEvent:Connect(incrementCompletedModule)
+failEvent.OnServerEvent:Connect(restartModule)

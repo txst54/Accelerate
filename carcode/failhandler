@@ -1,0 +1,23 @@
+local Players = game:GetService("Players")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local event = ReplicatedStorage.Remotes:FindFirstChild("RestartTest")
+
+local player = Players.LocalPlayer
+local car = script.Parent.Parent.Parent.Parent
+local chassis = car.Chassis
+local exitLocationAttachment = chassis.ExitLocationAttachment
+
+local function passHandlerAsync(_, inputState: Enum.UserInputState)
+	if inputState == Enum.UserInputState.Begin then
+		--update firebase
+
+		--kill everyone, plus car
+
+		--kick players
+		if car.DriverSeat.Occupant then
+			event:FireServer(car, game.Players:FindFirstChild(car.DriverSeat.Occupant.Parent.Name))
+		end		
+	end
+end
+
+return passHandlerAsync
